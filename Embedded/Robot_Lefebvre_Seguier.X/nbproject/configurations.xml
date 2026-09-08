@@ -24,7 +24,7 @@
       <itemPath>main.c</itemPath>
       <itemPath>IO.c</itemPath>
       <itemPath>ChipConfig.c</itemPath>
-      <itemPath>timer.C</itemPath>
+      <itemPath>timer.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

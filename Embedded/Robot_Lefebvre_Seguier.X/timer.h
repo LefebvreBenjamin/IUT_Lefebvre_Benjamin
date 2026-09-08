@@ -10,16 +10,5 @@
 void InitTimer23(void);
 void InitTimer1(void);
 
-#ifdef	__cplusplus
-extern "C" {
-#endif   
-
-
-
-
-#ifdef	__cplusplus
-}
-#endif
-
 #endif	/* TIMER_H */
 
