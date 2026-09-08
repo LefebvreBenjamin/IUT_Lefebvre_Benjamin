@@ -12,7 +12,7 @@ void InitTimer1(void);
 
 #ifdef	__cplusplus
 extern "C" {
-#endif
+#endif   
 
 
 
