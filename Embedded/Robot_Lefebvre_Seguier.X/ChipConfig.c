@@ -9,6 +9,7 @@
 #pragma config GSS = OFF                // General Segment Code-Protect bit (General Segment Code protect is disabled)
 #pragma config GSSK = OFF               // General Segment Key bits (General Segment Write Protection and Code Protection is Disabled)
 
+
 // FOSCSEL
 #ifdef USE_CRYSTAL_OSCILLATOR
 #pragma config FNOSC = PRIPLL           // Oscillator Source Selection bits (Internal Fast RC with PLL (FRCPLL))
