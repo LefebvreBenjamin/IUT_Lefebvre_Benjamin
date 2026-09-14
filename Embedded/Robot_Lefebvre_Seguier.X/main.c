@@ -30,8 +30,8 @@ int main(void) {
     // Boucle Principale
     /***********************************************************************************************/
     while (1) {
-        PWMSetSpeed(30, MOTEUR_DROIT);
-        PWMSetSpeed(30, MOTEUR_GAUCHE);
+        //PWMSetSpeed(30, MOTEUR_DROIT);
+        //PWMSetSpeed(30, MOTEUR_GAUCHE);
     } // fin main
 
 }
