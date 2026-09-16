@@ -31,8 +31,9 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     
     LED_VERTE_1 = !LED_VERTE_1;
     timestamp += 1;
+    
     OperatingSystemLoop();
-
+    
 }
 
 
@@ -58,6 +59,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //PWMUpdateSpeed();
     LED_BLANCHE_1 = !LED_BLANCHE_1;
     ADC1StartConversionSequence();
+    PWMUpdateSpeed();
 
 }
 
@@ -86,7 +88,7 @@ unsigned char toggle = 0;
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
-    if (toggle == 0) {
+    /*if (toggle == 0) {
         PWMSetSpeedConsigne(20, MOTEUR_DROIT);
         PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
         toggle = 1;
@@ -94,7 +96,7 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
         PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
         PWMSetSpeedConsigne(-20, MOTEUR_GAUCHE);
         toggle = 0;
-    }
+    }*/
 
 }
 
