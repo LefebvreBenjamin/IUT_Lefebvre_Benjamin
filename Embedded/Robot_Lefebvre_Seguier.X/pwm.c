@@ -43,15 +43,15 @@ double talon = 50;
 
 
 }*/
-void PWMSetSpeedConsigne(float vitesseEnPourcents, int moteur){
+void PWMSetSpeedConsigne(float vitesseEnPourcents, char moteur){
     if (moteur == MOTEUR_GAUCHE) {
         robotState.vitesseGaucheConsigne = vitesseEnPourcents; 
     } else if (moteur == MOTEUR_DROIT) {
-        robotState.vitesseDroiteConsigne = vitesseEnPourcents;
+        robotState.vitesseDroiteConsigne = -vitesseEnPourcents;
     }
 }
 
-float acceleration = 5;
+float acceleration = 15;
 void PWMUpdateSpeed() {
     // Cette fonction est appelee sur timer et permet de suivre des rampes d acceleration
     if (robotState.vitesseGaucheCommandeCourante < robotState.vitesseGaucheConsigne)
