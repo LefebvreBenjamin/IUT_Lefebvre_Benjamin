@@ -1,36 +1,100 @@
 switch (mot) {
-        case 0b00000: printf("00000 (0)\n");  break;
-        case 0b00001: printf("00001 (1)\n");  break;
-        case 0b00010: printf("00010 (2)\n");  break;
-        case 0b00011: printf("00011 (3)\n");  break;
-        case 0b00100: printf("00100 (4)\n");  break;
-        case 0b00101: printf("00101 (5)\n");  break;
-        case 0b00110: printf("00110 (6)\n");  break;
-        case 0b00111: printf("00111 (7)\n");  break;
-        case 0b01000: printf("01000 (8)\n");  break;
-        case 0b01001: printf("01001 (9)\n");  break;
-        case 0b01010: printf("01010 (10)\n"); break;
-        case 0b01011: printf("01011 (11)\n"); break;
-        case 0b01100: printf("01100 (12)\n"); break;
-        case 0b01101: printf("01101 (13)\n"); break;
-        case 0b01110: printf("01110 (14)\n"); break;
-        case 0b01111: printf("01111 (15)\n"); break;
-        case 0b10000: printf("10000 (16)\n"); break;
-        case 0b10001: printf("10001 (17)\n"); break;
-        case 0b10010: printf("10010 (18)\n"); break;
-        case 0b10011: printf("10011 (19)\n"); break;
-        case 0b10100: printf("10100 (20)\n"); break;
-        case 0b10101: printf("10101 (21)\n"); break;
-        case 0b10110: printf("10110 (22)\n"); break;
-        case 0b10111: printf("10111 (23)\n"); break;
-        case 0b11000: printf("11000 (24)\n"); break;
-        case 0b11001: printf("11001 (25)\n"); break;
-        case 0b11010: printf("11010 (26)\n"); break;
-        case 0b11011: printf("11011 (27)\n"); break;
-        case 0b11100: printf("11100 (28)\n"); break;
-        case 0b11101: printf("11101 (29)\n"); break;
-        case 0b11110: printf("11110 (30)\n"); break;
-        case 0b11111: printf("11111 (31)\n"); break;
+        case 0b00000:
+                printf("00000 (0)\n");
+                break;
+        case 0b00001:
+                printf("00001 (1)\n");
+                break;
+        case 0b00010: 
+                printf("00010 (2)\n");
+                break;
+        case 0b00011: 
+                printf("00011 (3)\n");
+                break;
+        case 0b00100: 
+                printf("00100 (4)\n");
+                break;
+        case 0b00101: 
+                printf("00101 (5)\n");
+                break;
+        case 0b00110: 
+                printf("00110 (6)\n");
+                break;
+        case 0b00111: 
+                printf("00111 (7)\n");
+                break;
+        case 0b01000: 
+                printf("01000 (8)\n");
+                break;
+        case 0b01001: 
+                printf("01001 (9)\n");
+                break;
+        case 0b01010: 
+                printf("01010 (10)\n");
+                break;
+        case 0b01011: 
+                printf("01011 (11)\n");
+                break;
+        case 0b01100: 
+                printf("01100 (12)\n");
+                break;
+        case 0b01101: 
+                printf("01101 (13)\n");
+                break;
+        case 0b01110: 
+                printf("01110 (14)\n");
+                break;
+        case 0b01111: 
+                printf("01111 (15)\n");
+                break;
+        case 0b10000: 
+                printf("10000 (16)\n");
+                break;
+        case 0b10001: 
+                printf("10001 (17)\n");
+                break;
+        case 0b10010: 
+                printf("10010 (18)\n");
+                break;
+        case 0b10011: 
+                printf("10011 (19)\n");
+                break;
+        case 0b10100: 
+                printf("10100 (20)\n");
+                break;
+        case 0b10101: 
+                printf("10101 (21)\n");
+                break;
+        case 0b10110: 
+                printf("10110 (22)\n");
+                break;
+        case 0b10111: 
+               printf("10111 (23)\n");
+               break;
+        case 0b11000: 
+                printf("11000 (24)\n");
+                break;
+        case 0b11001: 
+                printf("11001 (25)\n");
+                break;
+        case 0b11010: 
+                printf("11010 (26)\n");
+                break;
+        case 0b11011: 
+                printf("11011 (27)\n");
+                break;
+        case 0b11100: 
+                printf("11100 (28)\n");
+                break;
+        case 0b11101: 
+                printf("11101 (29)\n");
+                break;
+        case 0b11110: 
+                printf("11110 (30)\n");
+                break;
+        case 0b11111: 
+                printf("11111 (31)\n");
+                break;
         default:
             // Ne devrait jamais arriver puisque mot est masqué sur 5 bits
             printf("Valeur inattendue\n");
@@ -42,7 +106,7 @@ hessoul, on teste ça ça passe...
 int etats = 0b00000;
 
  for(int i = 0; i < 5; i++){
-	 if((((float) result [i]) * 3.3/4096) <= 35 ){
+	 if((34/(((float) result [i]) * 3.3/4096)) <= 37 ){
 		 etats = etats | (1<<(4-i));
 	}
 }

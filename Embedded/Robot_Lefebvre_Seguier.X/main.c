@@ -96,7 +96,7 @@ unsigned char stateRobot;
 
 void OperatingSystemLoop(void) {
     switch (etats) {
-        case 0b00000: //avancer
+        case 0b00000: //avancer, FORT
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
             break;
