@@ -36,3 +36,11 @@ switch (mot) {
             printf("Valeur inattendue\n");
             break;
     }
+
+hessoul, on teste ça ça passe...
+
+ for(int i = 0; i < 5; i++){
+	 if((((float) result [i]) * 3.3/4096) <= 35 ){
+		 etats = etats | (1<<(5-i));
+	}
+}
