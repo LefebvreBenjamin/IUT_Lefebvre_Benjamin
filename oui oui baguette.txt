@@ -39,8 +39,10 @@ switch (mot) {
 
 hessoul, on teste ça ça passe...
 
+int etats = 0b00000;
+
  for(int i = 0; i < 5; i++){
 	 if((((float) result [i]) * 3.3/4096) <= 35 ){
-		 etats = etats | (1<<(5-i));
+		 etats = etats | (1<<(4-i));
 	}
 }
