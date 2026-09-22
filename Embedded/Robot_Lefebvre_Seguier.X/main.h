@@ -51,15 +51,9 @@ void OperatingSystemLoop(void);
 #define OBSTACLE_A_DROITE 2
 
 
-//----------------ADDED------------------//
-
-/*
-#define OBSTACLE_A_DROITE_CENTRE 16
-#define OBSTACLE_A_GAUCHE_CENTRE 17
-*/
 #define OBSTACLE_A_EGAUCHE 22
 #define OBSTACLE_A_EDROITE 23
-//----------------ADDED------------------//
+
 
 
 

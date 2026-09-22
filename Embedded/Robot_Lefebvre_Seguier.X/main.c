@@ -122,27 +122,6 @@ void OperatingSystemLoop(void) {
             SetNextRobotStateInAutomaticMode();
             break;
 
-            /* 
-            //------------------ADDED--------------------//
-        case STATE_TOURNE_GAUCHE_CENTRE:
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED / 3, MOTEUR_GAUCHE);
-            stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
-            break;
-        case STATE_TOURNE_GAUCHE_CENTRE_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
-            break;
-
-        case STATE_TOURNE_DROITE_CENTRE:
-            PWMSetSpeedConsigne(MAX_SPEED / 3, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
-            stateRobot = STATE_TOURNE_DROITE_EN_COURS;
-            break;
-        case STATE_TOURNE_DROITE_CENTER_EN_COURS:
-            SetNextRobotStateInAutomaticMode();
-            break;
-            //------------------ADDED--------------------//
-             */
         case STATE_TOURNE_SUR_PLACE_GAUCHE:
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
