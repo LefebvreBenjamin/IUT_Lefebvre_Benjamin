@@ -14,6 +14,7 @@ int ADCValue1;
 int ADCValue2;
 
 volatile int etats = 0b00000;
+int distance = 30;
 
 int main(void) {
     /***********************************************************************************************/
@@ -51,38 +52,38 @@ int main(void) {
             etats = 0b00000;
             float volts = ((float) result [0])* 3.3 / 4096;
             robotState.distanceTelemetreEGauche = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreEGauche <= 37) ? (etats | 0b10000) : etats;
+            etats = (robotState.distanceTelemetreEGauche <= distance - 5) ? (etats | 0b10000) : etats;
 
             volts = ((float) result [1])* 3.3 / 4096;
             robotState.distanceTelemetreGauche = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreGauche <= 37) ? (etats | 0b01000) : etats;
+            etats = (robotState.distanceTelemetreGauche <= distance - 5) ? (etats | 0b01000) : etats;
 
             volts = ((float) result [2])* 3.3 / 4096;
             robotState.distanceTelemetreCentre = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreCentre <= 37) ? (etats | 0b00100) : etats;
+            etats = (robotState.distanceTelemetreCentre <= distance) ? (etats | 0b00100) : etats;
 
             volts = ((float) result [3])* 3.3 / 4096;
             robotState.distanceTelemetreDroit = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreDroit <= 37) ? (etats | 0b00010) : etats;
+            etats = (robotState.distanceTelemetreDroit <= distance - 5) ? (etats | 0b00010) : etats;
 
             volts = ((float) result [4])* 3.3 / 4096;
             robotState.distanceTelemetreEDroit = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreEDroit <= 37) ? (etats | 0b00001) : etats;
+            etats = (robotState.distanceTelemetreEDroit <= distance - 5) ? (etats | 0b00001) : etats;
         }
 
-        if (robotState.distanceTelemetreGauche >= 37) {
+        if (robotState.distanceTelemetreGauche >= distance - 5) {
             LED_BLEUE_1 = 1;
         } else LED_BLEUE_1 = 0;
-        if (robotState.distanceTelemetreCentre >= 37) {
+        if (robotState.distanceTelemetreCentre >= distance - 5) {
             LED_ORANGE_1 = 1;
         } else LED_ORANGE_1 = 0;
-        if (robotState.distanceTelemetreDroit >= 37) {
+        if (robotState.distanceTelemetreDroit >= distance) {
             LED_ROUGE_1 = 1;
         } else LED_ROUGE_1 = 0;
-        if (robotState.distanceTelemetreEDroit >= 37) {
+        if (robotState.distanceTelemetreEDroit >= distance - 5) {
             LED_VERTE_1 = 1;
         } else LED_VERTE_1 = 0;
-        if (robotState.distanceTelemetreEGauche >= 37) {
+        if (robotState.distanceTelemetreEGauche >= distance - 5) {
             LED_BLANCHE_1 = 1;
         } else LED_BLANCHE_1 = 0;
 
@@ -173,24 +174,24 @@ void OperatingSystemLoop(void) {
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b10011: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b10100: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b10101: 
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b10110: 
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b10111: 
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11000: 
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
@@ -201,28 +202,28 @@ void OperatingSystemLoop(void) {
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11010: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11011: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11100: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11101: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11110: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b11111: 
-            PWMSetSpeedConsigne(-MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
         default:
             break;
