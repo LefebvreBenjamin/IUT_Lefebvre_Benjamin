@@ -12,8 +12,8 @@
 
 void OperatingSystemLoop(void);
 
-#define MAX_SPEED 25
-#define SPIN_SPEED 13
+#define MAX_SPEED 25.0
+#define SPIN_SPEED 15.0
 #define STOP -10
 
 

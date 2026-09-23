@@ -14,7 +14,7 @@ int ADCValue1;
 int ADCValue2;
 
 volatile int etats = 0b00000;
-int distance = 30;
+int distance = 20;
 
 int main(void) {
     /***********************************************************************************************/
@@ -52,11 +52,11 @@ int main(void) {
             etats = 0b00000;
             float volts = ((float) result [0])* 3.3 / 4096;
             robotState.distanceTelemetreEGauche = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreEGauche <= distance - 5) ? (etats | 0b10000) : etats;
+            etats = (robotState.distanceTelemetreEGauche <= distance) ? (etats | 0b10000) : etats;
 
             volts = ((float) result [1])* 3.3 / 4096;
             robotState.distanceTelemetreGauche = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreGauche <= distance - 5) ? (etats | 0b01000) : etats;
+            etats = (robotState.distanceTelemetreGauche <= distance) ? (etats | 0b01000) : etats;
 
             volts = ((float) result [2])* 3.3 / 4096;
             robotState.distanceTelemetreCentre = 34 / volts - 5;
@@ -64,11 +64,11 @@ int main(void) {
 
             volts = ((float) result [3])* 3.3 / 4096;
             robotState.distanceTelemetreDroit = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreDroit <= distance - 5) ? (etats | 0b00010) : etats;
+            etats = (robotState.distanceTelemetreDroit <= distance) ? (etats | 0b00010) : etats;
 
             volts = ((float) result [4])* 3.3 / 4096;
             robotState.distanceTelemetreEDroit = 34 / volts - 5;
-            etats = (robotState.distanceTelemetreEDroit <= distance - 5) ? (etats | 0b00001) : etats;
+            etats = (robotState.distanceTelemetreEDroit <= distance) ? (etats | 0b00001) : etats;
         }
 
         if (robotState.distanceTelemetreGauche >= distance - 5) {
@@ -97,131 +97,131 @@ unsigned char stateRobot;
 
 void OperatingSystemLoop(void) {
     switch (etats) {
-        case 0b00000: //avancer, FORT
+        case 0b00000:
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
             break;
         case 0b00001:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b00010:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b00011:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b00100:
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b00101:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b00110:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b00111:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b01000:
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b01001:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b01010:
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b00010: 
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b00011: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b00100: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b00101: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b00110: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b00111: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01000: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01001: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01010: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01011: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01100: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01101: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01110: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b01111: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b10000: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b10001: 
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE); //// ICICICICICICICICCICICICI
-            break;
-        case 0b10010: 
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b10011: 
+        case 0b01011:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b01100:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b10100: 
+        case 0b01101:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b01110:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b10101: 
+        case 0b01111:
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b10110: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b10111: 
-            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
-            break;
-        case 0b11000: 
+        case 0b10000:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b10001:
+            PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(MAX_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11001: 
+        case 0b10010:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11010: 
+        case 0b10011:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b10100:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11011: 
+        case 0b10101:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11100: 
+        case 0b10110:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11101: 
+        case 0b10111:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b11000:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11110: 
+        case 0b11001:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
-        case 0b11111: 
+        case 0b11010:
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b11011:
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b11100:
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b11101:
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b11110:
+            PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
+            break;
+        case 0b11111:
             PWMSetSpeedConsigne(-SPIN_SPEED, MOTEUR_DROIT);
             PWMSetSpeedConsigne(SPIN_SPEED, MOTEUR_GAUCHE);
             break;
