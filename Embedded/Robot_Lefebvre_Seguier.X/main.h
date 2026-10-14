@@ -11,6 +11,7 @@
 #define FCY 60000000
 
 void OperatingSystemLoop(void);
+void SetNextRobotStateInAutomaticMode(void);
 
 #define MAX_SPEED 25.0
 #define SPIN_SPEED 9.0
