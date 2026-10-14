@@ -11,6 +11,7 @@
 #define FCY 60000000
 
 void OperatingSystemLoop(void);
+void SetNextRobotStateInAutomaticMode(void);
 
 #define STATE_ATTENTE 0
 #define STATE_ATTENTE_EN_COURS 1
