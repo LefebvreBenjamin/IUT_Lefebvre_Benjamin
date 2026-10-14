@@ -14,7 +14,7 @@ int ADCValue1;
 int ADCValue2;
 
 volatile int etats = 0b00000;
-int distance = 20;
+int distance = 22;
 
 int main(void) {
     /***********************************************************************************************/
@@ -94,7 +94,7 @@ int main(void) {
 //timestamp = 0;
 
 unsigned char stateRobot;
-
+int diviseur = 10;
 void OperatingSystemLoop(void) {
     switch (etats) {
         case 0b00000:
